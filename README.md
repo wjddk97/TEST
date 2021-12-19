@@ -1,89 +1,130 @@
-# 물리 계층 Physical Layer
-
-![image](https://user-images.githubusercontent.com/87896537/146076634-8d0ff319-0e73-48b0-a9e6-76d3ad5adc70.png)
-- OSI모델의 1계층으로 컴퓨터와 네트워크 장비 간에 전송되는 데이터를 전기 신호로 변환하는 계층입니다.
+# set
 
 <br>
 
-## 전기 신호
+### 특징
 
-- **아날로그 신호** : 전화 회선이나 라디오 방송에 사용되는 신호
-![image](https://user-images.githubusercontent.com/87896537/146080463-2ef83872-c785-43e3-8fed-5fcf0073b006.png)
-
-- **디지털 신호**  :  컴퓨터에서 전송에 사용되는 신호
-![image](https://user-images.githubusercontent.com/87896537/146080419-cbac4477-d720-4eb4-b437-b88835c6bd56.png)
-
-<br>
-
-- 컴퓨터는 네트워크를 통해 데이터를 송수신할 수 있도록 랜 카드를 가지고 있습니다.
-- 랜 카드를 통해 0과 1의 비트열을 전기 신호로 변환할 수 있습니다.
-- 비트열은 전기신호로 변환되어 네트워크를 통해 전송됩니다.
-- 상대방이 받은 전기 신호는 다시 비트열 데이터로 복원됩니다.
+- 집합에 관련된 것을 쉽게 처리하기 위해 만든 자료형이다.
+- 중복을 허용하지 않는다.
+- 순서가 없어 인덱스로 값을 얻을 수 없다.
+-----
 
 <br>
 
-![image](https://user-images.githubusercontent.com/87896537/146080574-918d2a9c-79de-4862-983c-d8d9be1aea41.png)
+### 1. 생성 
+```python
+a = {1, 2, 3, 4, 5}
+print(type(a)) #<class 'set'>
+
+b = {}
+print(type(b)) #<class 'dict'>
+
+c = set()
+print(type(c)) #<class 'set'>
+```
 
 <br>
 
-------
-# 케이블의 종류와 구조
+### 2. 추가&삭제
+```python
+#추가
+a = {1, 2, 3}
+a.add(4)
+print(a)
 
-## 네트워크 전송 매체
-- 데이터가 흐르는 물리적인 선로로 유선과 무선이 있습니다.
-- 유선 : 트위스트 페어 케이블(랜선), 광 케이블
-- 무선 : 라디오파, 마이크로파, 적외선
+>>> {1, 2, 3, 4}
 
-<br>
 
- **이 중 가장 많이 사용되는 트위스트 페어 케이블의 종류에는  UTP 케이블과 STP 케이블이 있다.**
-- **UTP 케이블** : 구리 선 여덟 개를 두 개씩 꼬아 만든 네 쌍의 전선으로 실드가 없는 케이블
-- UTP 케이블의 성능에 따라 카테고리(CAT)란 이름으로 종류가 나뉜다.
-- 저렴하지만 노이즈의 영항을 많이 받는다.
-- 일반적으로 많이 사용된다.
+#여러 값 추가
+a = {1, 2, 3}
+a.update({4, 5, 6})
+print(a)
 
-<br>
+>>> {1, 2, 3, 4, 5, 6}
 
-- **STP 케이블** : 실드로 보호한 케이블
-- 실드는 금속 호일이나 금속의 매듭과 같은 것으로 외부에서 발생하는 노이즈를 막는 역할을 한다.
-- 노이즈의 영향을 적게 받지만 비싸다.
 
-![image](https://user-images.githubusercontent.com/87896537/146356763-c4744927-6c97-4c85-9a58-4c40a287033e.png)
+#삭제
+a = {1, 2, 3}
+a.remove(2)
+print(a)
 
-<br>
-
-랜 케이블의 양쪽 끝에는 RJ-45라고 부르는 커넥터가 붙어있다.
-이 커넥터를 컴퓨터의 랜 포트나 네트워크 기기에 연결할 수 있다.
-
-![image](https://user-images.githubusercontent.com/87896537/146357882-1b341e4d-d382-4adb-9355-0648672e37c3.png)
+>>> {1, 3}
+```
 
 <br>
 
-## 다이렉트 케이블과 크로스 케이블
+### 3. 교집합&합집합&차집합
+- 메서드나 연산자를 사용하여 구할 수 있다.
 
-- 랜 케이블의 종류에는 다이렉트 케이블과 크로스 케이블이 있다.
+```python
+set1 = {1, 2, 3, 4, 5, 6}
+set2 = {4, 5, 6, 7, 8, 9}
 
-![제목을 입력해주세요_-001 (5)](https://user-images.githubusercontent.com/87896537/146369972-826d04d0-7227-4e1b-9a5b-6239cb3dd584.png)
+#교집합
+print(set1 & set2)
+>>> {4, 5, 6}
+print(set1.intersection(set2))
+>>> {4, 5, 6}
+
+#합집합
+print(set1 | set2)
+>>> {1, 2, 3, 4, 5, 6, 7, 8, 9}
+print(set1.union(set2))
+>>> {1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+#차집합
+print(set1 - set2)
+>>> {1, 2, 3}
+print(set1.difference(set2))
+>>> {1, 2, 3}
+```
 
 <br>
 
-- **다이렉트 케이블** : 구리 선 여덟 개를 같은 순서로 커넥터에 연결한 케이블이다.
-- 예를 들어, 컴퓨터와 허브를 연결할 때 사용된다.  
+### 4. list VS set (in 연산 시간복잡도 비교)
 
-<br>
+- List 자료형에서는 in 연산자의 시간 복잡도는 O(n)이고,
+- set 자료형에서는 in 연산자의 시간 복잡도는 O(1)입니다.
 
-- **크로스 케이블** : 한쪽 커넥터의 1번, 2번과 다른 쪽 커넥터의 3번, 6번을 연결한 케이블이다.
-- 컴퓨터와 컴퓨터를 연결할 때 사용된다. 
+```python
+import timeit
 
-<br>
+s = set(range(0, 1000000))
+l = list(range(0, 1000000))
 
-- 컴퓨터간 다이렉트 케이블을 사용하면 동시에 1번과 2번으로 데이터를 전송할 시 충돌이 발생한다. 
-- 이 때문에 선이 교차된 크로스 케이블을 사용하여 송, 수신 측이 올바르게 연결되도록 한다.
-- 실제로 다이렉트와 크로스 케이블 모두 1, 2, 3, 6번 구리선을 사용하고 나머지 네 개의 선은 사용하지 않는다.
+# set
+start = timeit.default_timer()
+print(999999 in s)
+print(timeit.default_timer() - start) 
+
+# list
+start = timeit.default_timer()
+print(999999 in l)
+print(timeit.default_timer() - start)  
+
+print('-----------------------------------')
+
+#set
+start = timeit.default_timer()
+for i in range(1000):
+    i+1000 in s
+print(timeit.default_timer() - start) 
+
+#list 
+start = timeit.default_timer()
+for i in range(1000):
+    i+1000 in l
+print(timeit.default_timer() - start) 
 
 
-이미지 출처 :
-<br>
-https://almotjalal.tistory.com/81
-<br>
-https://linkhub.tistory.com/85
+>>>
+True
+0.00001733399403747171
+True
+0.010281834998750128
+-----------------------------------
+0.00009790800686459988
+0.015224540999042802
+```
+
+ 
